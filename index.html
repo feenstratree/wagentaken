@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Huishoudelijke Takenrooster</title>
+    <style>
+        /* Algemene body stijl */
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #1a1a1a; /* Donkergrijze/bijna zwarte achtergrond */
+            color: #e0e0e0; /* Lichte tekstkleur voor contrast */
+            margin: 20px;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh; /* Zorgt ervoor dat de body minimaal de hoogte van het viewport is */
+        }
+
+        /* Titel stijl */
+        h1 {
+            color: #f0f0f0; /* Lichtere kleur voor de hoofdtitel */
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 2.5em; /* Grotere titel */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Subtiele schaduw */
+        }
+
+        /* Tabel stijl */
+        table {
+            width: 90%; /* Iets smaller dan 100% voor meer ademruimte */
+            max-width: 1000px; /* Maximale breedte voor grote schermen */
+            border-collapse: separate; /* Gebruik separate om border-radius mogelijk te maken */
+            border-spacing: 0; /* Verwijder ruimte tussen cellen */
+            margin-bottom: 40px;
+            background-color: #282828; /* Donkere achtergrond voor de tabel */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Subtiele schaduw voor diepte */
+            border-radius: 10px; /* Afgeronde hoeken voor de tabel */
+            overflow: hidden; /* Zorgt dat afgeronde hoeken zichtbaar zijn bij border-collapse: separate */
+        }
+
+        /* Tabelkop (th) stijl */
+        th {
+            background-color: #3a3a3a; /* Iets lichtere donkere kleur voor header */
+            color: #f0f0f0; /* Lichte tekstkleur voor header */
+            font-weight: bold;
+            padding: 15px 10px;
+            text-align: left;
+            border-bottom: 2px solid #555; /* Sterkere onderrand */
+        }
+
+        /* Tabelcellen (td) stijl */
+        td {
+            padding: 12px 10px;
+            border-bottom: 1px solid #333; /* Dunnere rand voor cellen */
+            color: #d0d0d0; /* Lichtere tekstkleur voor inhoud */
+        }
+
+        /* Laatste rij geen onderrand */
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Hover effect op rijen */
+        tbody tr:hover {
+            background-color: #353535; /* Subtieler hover effect */
+        }
+
+        /* Speciale highlights voor dagen */
+        /* De highlight-klassen worden toegepast op de <tr> elementen */
+        .highlight-vrijdag td {
+            background-color: #4a4220; /* Donkerdere geel */
+            color: #fceb9c; /* Lichtere tekstkleur */
+        }
+        .highlight-zaterdag td {
+            background-color: #2b4a20; /* Donkerdere groen */
+            color: #c9f9bc; /* Lichtere tekstkleur */
+        }
+        .highlight-zondag td {
+            background-color: #203c4a; /* Donkerdere blauw */
+            color: #bcebf9; /* Lichtere tekstkleur */
+        }
+
+        /* Border-radius voor de hoeken van de header en de tabel */
+        table thead tr:first-child th:first-child {
+            border-top-left-radius: 10px;
+        }
+        table thead tr:first-child th:last-child {
+            border-top-right-radius: 10px;
+        }
+        table tbody tr:last-child td:first-child {
+            border-bottom-left-radius: 10px;
+        }
+        table tbody tr:last-child td:last-child {
+            border-bottom-right-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Huishoudelijke Takenrooster</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Dag</th>
+                <th>Joost</th>
+                <th>Sabrina</th>
+                <th>Johannes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Maandag</td>
+                <td>Vaatwasser, Hondenpoep, Boodschappen halen</td>
+                <td>Koken, Wasmachine & Droger</td>
+                <td>Vegen & Dweilen</td>
+            </tr>
+            <tr>
+                <td>Dinsdag</td>
+                <td>Vaatwasser, Hondenpoep</td>
+                <td>Koken</td>
+                <td>Vegen & Dweilen</td>
+            </tr>
+            <tr>
+                <td>Woensdag</td>
+                <td>Vaatwasser, Hondenpoep</td>
+                <td>Koken, Wasmachine & Droger</td>
+                <td>Vegen & Dweilen</td>
+            </tr>
+            <tr>
+                <td>Donderdag</td>
+                <td>Vaatwasser, Hondenpoep</td>
+                <td>Koken</td>
+                <td>Vegen & Dweilen</td>
+            </tr>
+            <tr class="highlight-vrijdag">
+                <td>Vrijdag</td>
+                <td>Vaatwasser, Hondenpoep</td>
+                <td>Koken, Wasmachine & Droger</td>
+                <td>Vegen & Dweilen, Bier</td>
+            </tr>
+            <tr class="highlight-zaterdag">
+                <td>Zaterdag</td>
+                <td>Vaatwasser, Hondenpoep</td>
+                <td>Koken</td>
+                <td>Vegen & Dweilen, Bier</td>
+            </tr>
+            <tr class="highlight-zondag">
+                <td>Zondag</td>
+                <td>Vaatwasser, Hondenpoep</td>
+                <td>Koken, Wasmachine & Droger</td>
+                <td>Vegen & Dweilen, Bier</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Optionele sectie voor de foto, als je die erbij wilt -->
+    <!-- Opmerking: Je hebt hier een afbeelding in de HTML van de screenshot, maar deze code genereert alleen de tabel.
+         Als je de foto erbij wilt, kun je deze sectie toevoegen. -->
+    
+
+</body>
+</html>
