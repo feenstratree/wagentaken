@@ -10,63 +10,51 @@
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             background-color: #1a1a1a; /* Donkergrijze/bijna zwarte achtergrond */
             color: #e0e0e0; /* Lichte tekstkleur voor contrast */
-            margin: 0; /* Margin reset */
-            padding: 20px; /* Padding voor de inhoud */
+            margin: 20px;
+            padding: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-height: 100vh;
-            box-sizing: border-box; /* Zorgt ervoor dat padding binnen de breedte/hoogte valt */
+            min-height: 100vh; /* Zorgt ervoor dat de body minimaal de hoogte van het viewport is */
         }
 
         /* Titel stijl */
         h1 {
-            color: #f0f0f0;
+            color: #f0f0f0; /* Lichtere kleur voor de hoofdtitel */
             margin-bottom: 30px;
             text-align: center;
-            font-size: 2.5em;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            padding: 0 10px; /* Klein beetje padding voor kleinere schermen */
-        }
-
-        /* Tabel container voor horizontaal scrollen op kleine schermen */
-        .table-container {
-            width: 100%; /* Neem volledige breedte in op kleine schermen */
-            max-width: 1000px; /* Maximale breedte voor grote schermen */
-            overflow-x: auto; /* Voeg horizontale scroll toe als de inhoud te breed is */
-            -webkit-overflow-scrolling: touch; /* Vloeiend scrollen op iOS */
-            margin-bottom: 40px;
-            border-radius: 10px; /* Afgeronde hoeken voor de container */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            font-size: 2.5em; /* Grotere titel */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Subtiele schaduw */
         }
 
         /* Tabel stijl */
         table {
-            width: 100%; /* Zorgt dat de tabel de breedte van de container vult */
-            min-width: 600px; /* Minimale breedte om de kolommen leesbaar te houden op mobiel */
-            border-collapse: separate;
-            border-spacing: 0;
-            background-color: #282828;
-            border-radius: 10px;
-            overflow: hidden; /* Om de afgeronde hoeken van de container te respecteren */
+            width: 90%; /* Iets smaller dan 100% voor meer ademruimte */
+            max-width: 1000px; /* Maximale breedte voor grote schermen */
+            border-collapse: separate; /* Gebruik separate om border-radius mogelijk te maken */
+            border-spacing: 0; /* Verwijder ruimte tussen cellen */
+            margin-bottom: 40px;
+            background-color: #282828; /* Donkere achtergrond voor de tabel */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Subtiele schaduw voor diepte */
+            border-radius: 10px; /* Afgeronde hoeken voor de tabel */
+            overflow: hidden; /* Zorgt dat afgeronde hoeken zichtbaar zijn bij border-collapse: separate */
         }
 
         /* Tabelkop (th) stijl */
         th {
-            background-color: #3a3a3a;
-            color: #f0f0f0;
+            background-color: #3a3a3a; /* Iets lichtere donkere kleur voor header */
+            color: #f0f0f0; /* Lichte tekstkleur voor header */
             font-weight: bold;
             padding: 15px 10px;
             text-align: left;
-            border-bottom: 2px solid #555;
-            white-space: nowrap; /* Zorgt ervoor dat de headers niet afbreken */
+            border-bottom: 2px solid #555; /* Sterkere onderrand */
         }
 
         /* Tabelcellen (td) stijl */
         td {
             padding: 12px 10px;
-            border-bottom: 1px solid #333;
-            color: #d0d0d0;
+            border-bottom: 1px solid #333; /* Dunnere rand voor cellen */
+            color: #d0d0d0; /* Lichtere tekstkleur voor inhoud */
         }
 
         /* Laatste rij geen onderrand */
@@ -76,22 +64,38 @@
 
         /* Hover effect op rijen */
         tbody tr:hover {
-            background-color: #353535;
+            background-color: #353535; /* Subtieler hover effect */
         }
 
-        /* Specifieke highlights voor dagen */
+        /* Speciale highlights voor dagen */
         .highlight-vrijdag td {
-            background-color: #4a4220;
-            color: #fceb9c;
+            background-color: #4a4220; /* Donkerdere geel */
+            color: #fceb9c; /* Lichtere tekstkleur */
         }
         .highlight-zaterdag td {
-            background-color: #2b4a20;
-            color: #c9f9bc;
+            background-color: #2b4a20; /* Donkerdere groen */
+            color: #c9f9bc; /* Lichtere tekstkleur */
         }
         .highlight-zondag td {
-            background-color: #203c4a;
-            color: #bcebf9;
+            background-color: #203c4a; /* Donkerdere blauw */
+            color: #bcebf9; /* Lichtere tekstkleur */
         }
+
+        /* Styling voor de TEKST van de 'Joost' kolom */
+        /* th:nth-child(2) en td:nth-child(2) selecteren de 2e kolom */
+        thead th:nth-child(2),
+        tbody td:nth-child(2) {
+            color: #ff69b4; /* Fel roze, zoals "hotpink" */
+            /* Zorg ervoor dat de achtergrondkleur hier NIET wordt ingesteld,
+               zodat de standaard achtergrond van de tabelcellen blijft. */
+        }
+
+        /* Specifieke regel om te zorgen dat de roze tekst ook werkt bij hover,
+           en niet wordt overschreven door de algemene td-kleur. */
+        tbody tr:hover td:nth-child(2) {
+            color: #ff99d6; /* Een iets lichtere roze bij hover, voor subtiel effect */
+        }
+
 
         /* Border-radius voor de hoeken van de header en de tabel */
         table thead tr:first-child th:first-child {
@@ -106,146 +110,66 @@
         table tbody tr:last-child td:last-child {
             border-bottom-right-radius: 10px;
         }
-
-        /* --- Media Queries voor Responsiviteit --- */
-
-        /* Kleine schermen (telefoons) */
-        @media (max-width: 768px) {
-            body {
-                padding: 10px; /* Minder padding aan de zijkanten */
-            }
-
-            h1 {
-                font-size: 2em; /* Iets kleinere titel op mobiel */
-                margin-bottom: 20px;
-            }
-
-            th, td {
-                padding: 10px 8px; /* Minder padding in cellen */
-                font-size: 0.9em; /* Iets kleinere tekst */
-            }
-
-            /* De tabel container zorgt voor het scrollen */
-            .table-container {
-                border-radius: 5px; /* Kleinere afgeronde hoeken op mobiel */
-            }
-
-            table {
-                border-radius: 5px; /* Kleinere afgeronde hoeken op mobiel */
-                /* min-width blijft belangrijk om scrollen mogelijk te maken */
-            }
-
-            /* Verwijder de border-radius van de specifieke cellen in het thead en tbody
-               omdat de container nu de ronde hoeken beheert en overflow: hidden heeft.
-               Dit voorkomt dubbele/verkeerde rendering van de hoeken. */
-            table thead tr:first-child th:first-child,
-            table thead tr:first-child th:last-child,
-            table tbody tr:last-child td:first-child,
-            table tbody tr:last-child td:last-child {
-                border-radius: 0; /* Verwijder individuele cel radii */
-            }
-        }
-
-        /* Zeer kleine schermen (oudere/kleinere telefoons) */
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 1.8em;
-            }
-
-            th, td {
-                padding: 8px 5px; /* Nog minder padding */
-                font-size: 0.85em; /* Nog kleinere tekst */
-            }
-
-            table {
-                min-width: 500px; /* Houd een minimumbreedte aan voor de tabelinhoud */
-            }
-        }
-
-        /* Styling voor de foto sectie */
-        .image-section {
-            text-align: center;
-            margin-top: 40px;
-            width: 100%; /* Neem volledige breedte */
-            max-width: 800px; /* Maximale breedte */
-            padding: 0 10px; /* Padding voor de zijkanten */
-            box-sizing: border-box;
-        }
-
-        .image-section img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-        }
     </style>
 </head>
 <body>
 
     <h1>Huishoudelijke Takenrooster</h1>
 
-    <div class="table-container">
-        <table>
-            <thead>
-                <tr>
-                    <th>Dag</th>
-                    <th>Joost</th>
-                    <th>Sabrina</th>
-                    <th>Johannes</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Maandag</td>
-                    <td>Vaatwasser, Hondenpoep, Boodschappen halen</td>
-                    <td>Koken, Wasmachine & Droger</td>
-                    <td>Vegen & Dweilen</td>
-                </tr>
-                <tr>
-                    <td>Dinsdag</td>
-                    <td>Vaatwasser, Hondenpoep</td>
-                    <td>Koken</td>
-                    <td>Vegen & Dweilen</td>
-                </tr>
-                <tr>
-                    <td>Woensdag</td>
-                    <td>Vaatwasser, Hondenpoep</td>
-                    <td>Koken, Wasmachine & Droger</td>
-                    <td>Vegen & Dweilen</td>
-                </tr>
-                <tr>
-                    <td>Donderdag</td>
-                    <td>Vaatwasser, Hondenpoep</td>
-                    <td>Koken</td>
-                    <td>Vegen & Dweilen</td>
-                </tr>
-                <tr class="highlight-vrijdag">
-                    <td>Vrijdag</td>
-                    <td>Vaatwasser, Hondenpoep</td>
-                    <td>Koken, Wasmachine & Droger</td>
-                    <td>Vegen & Dweilen, Bier</td>
-                </tr>
-                <tr class="highlight-zaterdag">
-                    <td>Zaterdag</td>
-                    <td>Vaatwasser, Hondenpoep</td>
-                    <td>Koken</td>
-                    <td>Vegen & Dweilen, Bier</td>
-                </tr>
-                <tr class="highlight-zondag">
-                    <td>Zondag</td>
-                    <td>Vaatwasser, Hondenpoep</td>
-                    <td>Koken, Wasmachine & Droger</td>
-                    <td>Vegen & Dweilen, Bier</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <!-- Foto sectie -->
-    <div class="image-section">
-        <h2 style="color: #f0f0f0;">Foto van de Woonwagen</h2>
-        <img src="images/wagen.jpg" alt="Foto van de woonwagen">
-    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Dag</th>
+                <th>Joost</th>
+                <th>Sabrina</th>
+                <th>Johannes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Maandag</td>
+                <td>Vaatwasser, Hondenpoep, Boodschappen halen</td>
+                <td>Koken, Wasmachine & Droger</td>
+                <td>Vegen & Dweilen</td>
+            </tr>
+            <tr>
+                <td>Dinsdag</td>
+                <td>Vaatwasser, Hondenpoep</td>
+                <td>Koken</td>
+                <td>Vegen & Dweilen</td>
+            </tr>
+            <tr>
+                <td>Woensdag</td>
+                <td>Vaatwasser, Hondenpoep</td>
+                <td>Koken, Wasmachine & Droger</td>
+                <td>Vegen & Dweilen</td>
+            </tr>
+            <tr>
+                <td>Donderdag</td>
+                <td>Vaatwasser, Hondenpoep</td>
+                <td>Koken</td>
+                <td>Vegen & Dweilen</td>
+            </tr>
+            <tr class="highlight-vrijdag">
+                <td>Vrijdag</td>
+                <td>Vaatwasser, Hondenpoep</td>
+                <td>Koken, Wasmachine & Droger</td>
+                <td>Vegen & Dweilen, Bier</td>
+            </tr>
+            <tr class="highlight-zaterdag">
+                <td>Zaterdag</td>
+                <td>Vaatwasser, Hondenpoep</td>
+                <td>Koken</td>
+                <td>Vegen & Dweilen, Bier</td>
+            </tr>
+            <tr class="highlight-zondag">
+                <td>Zondag</td>
+                <td>Vaatwasser, Hondenpoep</td>
+                <td>Koken, Wasmachine & Droger</td>
+                <td>Vegen & Dweilen, Bier</td>
+            </tr>
+        </tbody>
+    </table>
 
 </body>
 </html>
