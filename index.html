@@ -19,6 +19,35 @@
             box-sizing: border-box; /* Zorgt ervoor dat padding en border binnen de opgegeven breedte/hoogte vallen */
         }
 
+        /* Navigatiemenu stijl */
+        .navbar {
+            background-color: #3a3a3a; /* Donkere achtergrond voor de navbar */
+            padding: 10px 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            width: 95%;
+            max-width: 1000px;
+            display: flex; /* Gebruik flexbox om items naast elkaar te plaatsen */
+            justify-content: center; /* Centreer items horizontaal */
+            gap: 20px; /* Ruimte tussen de links */
+        }
+
+        .navbar a {
+            color: #f0f0f0; /* Lichte tekstkleur */
+            text-decoration: none; /* Geen onderstreping */
+            font-weight: bold;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease; /* Vloeiende overgang bij hover */
+        }
+
+        .navbar a:hover {
+            background-color: #555; /* Donkerdere achtergrond bij hover */
+            color: #fff; /* Wittere tekst bij hover */
+        }
+
+
         /* Titel stijl */
         h1 {
             color: #f0f0f0; /* Lichtere kleur voor de hoofdtitel */
@@ -109,7 +138,7 @@
             border-bottom-right-radius: 10px;
         }
 
-        /* NIEUWE STIJLEN VOOR JOOST */
+        /* STIJLEN VOOR JOOST IN TABEL */
         /* De naam Joost in de header roze maken */
         th.joost-header {
             color: #ff69b4; /* Roze kleur */
@@ -120,26 +149,148 @@
             color: #ff69b4; /* Roze kleur */
         }
 
-        /* Media Queries voor kleinere schermen (optioneel, maar kan helpen) */
+        /* STIJLEN VOOR AANDACHTSPUNTEN SECTIE (generieke styling) */
+        .attention-points-container {
+            width: 95%;
+            max-width: 1000px;
+            background-color: #282828;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            padding: 20px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .attention-points-container h2 {
+            color: #f0f0f0;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 1px solid #555;
+            padding-bottom: 10px;
+        }
+
+        .attention-person {
+            margin-bottom: 15px;
+        }
+
+        .attention-person h3 {
+            color: #e0e0e0;
+            font-size: 1.3em;
+            margin-bottom: 8px;
+            border-left: 4px solid #d0d0d0;
+            padding-left: 10px;
+        }
+
+        .attention-person p {
+            margin-left: 14px;
+            line-height: 1.6;
+            color: #d0d0d0;
+        }
+
+        /* Password form styling - ook hier opgenomen voor consistentie, hoewel alleen gebruikt in joost/sabrina.html */
+        .password-form-container {
+            background-color: #282828;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            text-align: center;
+            margin-top: 50px;
+            width: 90%;
+            max-width: 400px;
+        }
+
+        .password-form-container label {
+            display: block;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+            color: #f0f0f0;
+        }
+
+        .password-form-container input[type="password"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #555;
+            border-radius: 5px;
+            background-color: #3a3a3a;
+            color: #f0f0f0;
+            font-size: 1em;
+            text-align: center;
+        }
+
+        .password-form-container button {
+            background-color: #4CAF50; /* Groen */
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+        }
+
+        .password-form-container button:hover {
+            background-color: #45a049;
+        }
+
+        .password-form-container #message {
+            color: #ff4d4d; /* Rood voor foutmeldingen */
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        /* Media Queries voor kleinere schermen */
         @media (max-width: 768px) {
             h1 {
-                font-size: 2em; /* Iets kleinere titel op tablets */
+                font-size: 2em;
+            }
+            .attention-points-container h2 {
+                font-size: 1.5em;
+            }
+            .attention-points-container h3 {
+                font-size: 1.1em;
+            }
+            .attention-points-container p {
+                font-size: 0.95em;
+            }
+            .navbar {
+                flex-direction: column;
+                gap: 10px;
+                padding: 10px;
+            }
+            .navbar a {
+                width: calc(100% - 30px);
+                text-align: center;
             }
         }
 
         @media (max-width: 480px) {
             body {
-                margin: 10px; /* Minder marge op heel kleine schermen */
+                margin: 10px;
             }
             h1 {
-                font-size: 1.8em; /* Nog kleinere titel op smartphones */
+                font-size: 1.8em;
             }
             .table-container {
-                width: 100%; /* Neem alle beschikbare breedte in op zeer kleine schermen */
+                width: 100%;
             }
             th, td {
-                padding: 10px 8px; /* Iets minder padding in cellen */
-                font-size: 0.9em; /* Iets kleinere lettergrootte voor leesbaarheid */
+                padding: 10px 8px;
+                font-size: 0.9em;
+            }
+            .attention-points-container {
+                padding: 15px;
+                width: 100%;
+            }
+            .attention-points-container h2 {
+                font-size: 1.3em;
+            }
+            .attention-points-container h3 {
+                font-size: 1em;
+            }
+            .attention-points-container p {
+                font-size: 0.85em;
             }
         }
     </style>
@@ -148,12 +299,17 @@
 
     <h1>Huishoudelijke Takenrooster</h1>
 
+    <nav class="navbar">
+        <a href="joost.html">Joost</a>
+        <a href="sabrina.html">Sabrina</a>
+    </nav>
+
     <div class="table-container">
         <table>
             <thead>
                 <tr>
                     <th>Dag</th>
-                    <th class="joost-header">Joost</th> <!-- Class toegevoegd aan Joost's header -->
+                    <th class="joost-header">Joost</th>
                     <th>Sabrina</th>
                     <th>Johannes</th>
                 </tr>
@@ -161,7 +317,7 @@
             <tbody>
                 <tr>
                     <td>Maandag</td>
-                    <td class="joost-tasks">Vaatwasser, Hondenpoep, Boodschappen halen</td> <!-- Class toegevoegd aan Joost's taken -->
+                    <td class="joost-tasks">Vaatwasser, Hondenpoep, Boodschappen halen</td>
                     <td>Koken, Wasmachine & Droger</td>
                     <td>Vegen & Dweilen</td>
                 </tr>
