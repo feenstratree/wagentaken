@@ -16,6 +16,7 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh; /* Zorgt ervoor dat de body minimaal de hoogte van het viewport is */
+            box-sizing: border-box; /* Zorgt ervoor dat padding en border binnen de opgegeven breedte/hoogte vallen */
         }
 
         /* Titel stijl */
@@ -25,18 +26,29 @@
             text-align: center;
             font-size: 2.5em; /* Grotere titel */
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Subtiele schaduw */
+            padding: 0 10px; /* Een beetje padding voor kleine schermen om niet tegen de rand te plakken */
+            word-break: break-word; /* Voorkomt overflow van lange woorden op kleine schermen */
+        }
+
+        /* Container voor de tabel om horizontaal scrollen mogelijk te maken */
+        .table-container {
+            width: 95%; /* Iets meer breedte benutten op mobiel */
+            max-width: 1000px; /* Maximale breedte voor grote schermen */
+            overflow-x: auto; /* Zorgt voor horizontale scrollbalk indien nodig */
+            -webkit-overflow-scrolling: touch; /* Voor soepel scrollen op iOS */
+            margin-bottom: 40px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Schaduw hier toepassen i.p.v. op tabel */
+            border-radius: 10px; /* Afgeronde hoeken voor de container */
+            background-color: #282828; /* Achtergrond kleur voor de container, vult de scrollruimte op */
         }
 
         /* Tabel stijl */
         table {
-            width: 90%; /* Iets smaller dan 100% voor meer ademruimte */
-            max-width: 1000px; /* Maximale breedte voor grote schermen */
+            width: 100%; /* Zorg dat de tabel de volledige breedte van de container benut */
+            min-width: 600px; /* Geef de tabel een minimale breedte zodat cellen niet te smal worden */
             border-collapse: separate; /* Gebruik separate om border-radius mogelijk te maken */
             border-spacing: 0; /* Verwijder ruimte tussen cellen */
-            margin-bottom: 40px;
-            background-color: #282828; /* Donkere achtergrond voor de tabel */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Subtiele schaduw voor diepte */
-            border-radius: 10px; /* Afgeronde hoeken voor de tabel */
+            border-radius: 10px; /* Afgeronde hoeken voor de tabel, vooral belangrijk als de container geen radius heeft */
             overflow: hidden; /* Zorgt dat afgeronde hoeken zichtbaar zijn bij border-collapse: separate */
         }
 
@@ -48,6 +60,7 @@
             padding: 15px 10px;
             text-align: left;
             border-bottom: 2px solid #555; /* Sterkere onderrand */
+            white-space: nowrap; /* Voorkom dat headers breken, ze schuiven liever mee */
         }
 
         /* Tabelcellen (td) stijl */
@@ -55,6 +68,7 @@
             padding: 12px 10px;
             border-bottom: 1px solid #333; /* Dunnere rand voor cellen */
             color: #d0d0d0; /* Lichtere tekstkleur voor inhoud */
+            vertical-align: top; /* Zorgt ervoor dat de tekst bovenaan de cel begint */
         }
 
         /* Laatste rij geen onderrand */
@@ -81,22 +95,6 @@
             color: #bcebf9; /* Lichtere tekstkleur */
         }
 
-        /* Styling voor de TEKST van de 'Joost' kolom */
-        /* th:nth-child(2) en td:nth-child(2) selecteren de 2e kolom */
-        thead th:nth-child(2),
-        tbody td:nth-child(2) {
-            color: #ff69b4; /* Fel roze, zoals "hotpink" */
-            /* Zorg ervoor dat de achtergrondkleur hier NIET wordt ingesteld,
-               zodat de standaard achtergrond van de tabelcellen blijft. */
-        }
-
-        /* Specifieke regel om te zorgen dat de roze tekst ook werkt bij hover,
-           en niet wordt overschreven door de algemene td-kleur. */
-        tbody tr:hover td:nth-child(2) {
-            color: #ff99d6; /* Een iets lichtere roze bij hover, voor subtiel effect */
-        }
-
-
         /* Border-radius voor de hoeken van de header en de tabel */
         table thead tr:first-child th:first-child {
             border-top-left-radius: 10px;
@@ -110,66 +108,102 @@
         table tbody tr:last-child td:last-child {
             border-bottom-right-radius: 10px;
         }
+
+        /* NIEUWE STIJLEN VOOR JOOST */
+        /* De naam Joost in de header roze maken */
+        th.joost-header {
+            color: #ff69b4; /* Roze kleur */
+        }
+
+        /* De taken van Joost roze maken */
+        td.joost-tasks {
+            color: #ff69b4; /* Roze kleur */
+        }
+
+        /* Media Queries voor kleinere schermen (optioneel, maar kan helpen) */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em; /* Iets kleinere titel op tablets */
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                margin: 10px; /* Minder marge op heel kleine schermen */
+            }
+            h1 {
+                font-size: 1.8em; /* Nog kleinere titel op smartphones */
+            }
+            .table-container {
+                width: 100%; /* Neem alle beschikbare breedte in op zeer kleine schermen */
+            }
+            th, td {
+                padding: 10px 8px; /* Iets minder padding in cellen */
+                font-size: 0.9em; /* Iets kleinere lettergrootte voor leesbaarheid */
+            }
+        }
     </style>
 </head>
 <body>
 
     <h1>Huishoudelijke Takenrooster</h1>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Dag</th>
-                <th>Joost</th>
-                <th>Sabrina</th>
-                <th>Johannes</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Maandag</td>
-                <td>Vaatwasser, Hondenpoep, Boodschappen halen</td>
-                <td>Koken, Wasmachine & Droger</td>
-                <td>Vegen & Dweilen</td>
-            </tr>
-            <tr>
-                <td>Dinsdag</td>
-                <td>Vaatwasser, Hondenpoep</td>
-                <td>Koken</td>
-                <td>Vegen & Dweilen</td>
-            </tr>
-            <tr>
-                <td>Woensdag</td>
-                <td>Vaatwasser, Hondenpoep</td>
-                <td>Koken, Wasmachine & Droger</td>
-                <td>Vegen & Dweilen</td>
-            </tr>
-            <tr>
-                <td>Donderdag</td>
-                <td>Vaatwasser, Hondenpoep</td>
-                <td>Koken</td>
-                <td>Vegen & Dweilen</td>
-            </tr>
-            <tr class="highlight-vrijdag">
-                <td>Vrijdag</td>
-                <td>Vaatwasser, Hondenpoep</td>
-                <td>Koken, Wasmachine & Droger</td>
-                <td>Vegen & Dweilen, Bier</td>
-            </tr>
-            <tr class="highlight-zaterdag">
-                <td>Zaterdag</td>
-                <td>Vaatwasser, Hondenpoep</td>
-                <td>Koken</td>
-                <td>Vegen & Dweilen, Bier</td>
-            </tr>
-            <tr class="highlight-zondag">
-                <td>Zondag</td>
-                <td>Vaatwasser, Hondenpoep</td>
-                <td>Koken, Wasmachine & Droger</td>
-                <td>Vegen & Dweilen, Bier</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Dag</th>
+                    <th class="joost-header">Joost</th> <!-- Class toegevoegd aan Joost's header -->
+                    <th>Sabrina</th>
+                    <th>Johannes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Maandag</td>
+                    <td class="joost-tasks">Vaatwasser, Hondenpoep, Boodschappen halen</td> <!-- Class toegevoegd aan Joost's taken -->
+                    <td>Koken, Wasmachine & Droger</td>
+                    <td>Vegen & Dweilen</td>
+                </tr>
+                <tr>
+                    <td>Dinsdag</td>
+                    <td class="joost-tasks">Vaatwasser, Hondenpoep</td>
+                    <td>Koken</td>
+                    <td>Vegen & Dweilen</td>
+                </tr>
+                <tr>
+                    <td>Woensdag</td>
+                    <td class="joost-tasks">Vaatwasser, Hondenpoep</td>
+                    <td>Koken, Wasmachine & Droger</td>
+                    <td>Vegen & Dweilen</td>
+                </tr>
+                <tr>
+                    <td>Donderdag</td>
+                    <td class="joost-tasks">Vaatwasser, Hondenpoep</td>
+                    <td>Koken</td>
+                    <td>Vegen & Dweilen</td>
+                </tr>
+                <tr class="highlight-vrijdag">
+                    <td>Vrijdag</td>
+                    <td class="joost-tasks">Vaatwasser, Hondenpoep</td>
+                    <td>Koken, Wasmachine & Droger</td>
+                    <td>Vegen & Dweilen, Bier</td>
+                </tr>
+                <tr class="highlight-zaterdag">
+                    <td>Zaterdag</td>
+                    <td class="joost-tasks">Vaatwasser, Hondenpoep</td>
+                    <td>Koken</td>
+                    <td>Vegen & Dweilen, Bier</td>
+                </tr>
+                <tr class="highlight-zondag">
+                    <td>Zondag</td>
+                    <td class="joost-tasks">Vaatwasser, Hondenpoep</td>
+                    <td>Koken, Wasmachine & Droger</td>
+                    <td>Vegen & Dweilen, Bier</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
 </body>
 </html>
